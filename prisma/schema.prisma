@@ -1,0 +1,19 @@
+// schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model tbl_booking {
+  id_hotel     Int      @id @default(autoincrement())
+  checkindate  String
+  checkoutdate String
+  roomtype     String
+  guests       Int
+}
