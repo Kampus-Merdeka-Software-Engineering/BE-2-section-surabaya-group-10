@@ -7,8 +7,9 @@ const port = 3000;
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root', // Ganti dengan username MySQL Anda
-    password: 'admin', // Ganti dengan password MySQL Anda
-    database: 'hotel' // Ganti dengan nama database Anda
+    password: 'password', // Ganti dengan password MySQL Anda
+    database: 'hotel', // Ganti dengan nama database Anda
+    port: 3306 // 
 });
 
 db.connect(err => {
