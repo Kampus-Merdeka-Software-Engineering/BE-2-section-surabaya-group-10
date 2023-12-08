@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Email {
+  id Int @id @default(autoincrement())
+  email String @unique
+}
+
+// db/PostModel.prisma
+model Post {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  location    String
+  city        String
+  price       Float
+  link        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  bookings    Booking[]
+  facilities  Facility[]
+  images      Image[]
+}
+
+model Facility {
+  id          Int      @id @default(autoincrement())
+  post        Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId      Int
+  name        String
+}
+
+model Image {
+  id          Int      @id @default(autoincrement())
+  post        Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId      Int
+  url         String
+}
+
+model Booking {
+  id          Int      @id @default(autoincrement())
+  checkIn     DateTime
+  checkOut    DateTime
+  roomType    String
+  guests      Int
+  price       Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  postId      Int      // Menambahkan field untuk menyimpan id Post yang terkait
+  post        Post     @relation(fields: [postId], references: [id], onDelete: Cascade) // Menetapkan relasi dengan model Post
+}
