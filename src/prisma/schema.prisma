@@ -19,11 +19,11 @@ model Email {
 model Post {
   id          Int      @id @default(autoincrement())
   name        String
-  description String
+  description String? @db.Text
   location    String
   city        String
   price       Float
-  link        String
+  link        String? @db.Text
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   bookings    Booking[]
