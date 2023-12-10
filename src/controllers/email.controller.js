@@ -16,8 +16,7 @@ exports.create = async (req, res) => {
             });
             res.status(201).json({ message: "Email subscribe success", data: newEmail });
         }
-      } catch (error) {
-        console.log(error);
+    } catch (error) {
         res.status(500).json({ message: "Error creating email" });
     }
 }
