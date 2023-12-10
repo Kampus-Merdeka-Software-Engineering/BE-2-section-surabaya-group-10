@@ -10,7 +10,7 @@ exports.findAll = async (req, res) => {
             }
         });
         res.status(200).json({ message: "Success", data: posts });
-     } catch (error) {
+    } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Error" });
     }
@@ -86,7 +86,10 @@ exports.findOne = async (req, res) => {
       }
   
       res.send(post);
-    } 
+    } catch (error) {
+      console.error(error);
+      res.status(500).send({
+        message: "Error retrieving post with id=" + id,
       });
     }
 };
@@ -138,7 +141,7 @@ exports.delete = async (req, res) => {
       }
   
       res.send({ message: "Post was deleted successfully!" });
-   } catch (error) {
+    } catch (error) {
       console.error(error);
       res.status(500).send({
         message: "Could not delete post with id=" + id,
@@ -167,7 +170,7 @@ exports.findByCityAndName = async (req, res) => {
             }});          
     
         res.json({ hotels });
-       } catch (error) {
+      } catch (error) {
         console.error('Error searching hotels:', error);
         res.status(500).json({ error: 'Internal Server Error' });
       }
