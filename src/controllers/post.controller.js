@@ -10,9 +10,7 @@ exports.findAll = async (req, res) => {
             }
         });
         res.status(200).json({ message: "Success", data: posts });
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({ message: "Error" });
+    } 
     }
 }
 
@@ -61,9 +59,7 @@ exports.create = async (req, res) => {
         });
       
         res.json({ post: newPost });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
+    }});
     }      
 }
 
@@ -86,10 +82,7 @@ exports.findOne = async (req, res) => {
       }
   
       res.send(post);
-    } catch (error) {
-      console.error(error);
-      res.status(500).send({
-        message: "Error retrieving post with id=" + id,
+    } 
       });
     }
 };
@@ -114,10 +107,7 @@ exports.update = async (req, res) => {
       }
   
       res.send({ message: "Post was updated successfully." });
-    } catch (error) {
-      console.error(error);
-      res.status(500).send({
-        message: "Error updating post with id=" + id,
+    } 
       });
     }
 };
@@ -141,10 +131,7 @@ exports.delete = async (req, res) => {
       }
   
       res.send({ message: "Post was deleted successfully!" });
-    } catch (error) {
-      console.error(error);
-      res.status(500).send({
-        message: "Could not delete post with id=" + id,
+    } 
       });
     }
 };
@@ -170,9 +157,7 @@ exports.findByCityAndName = async (req, res) => {
             }});          
     
         res.json({ hotels });
-      } catch (error) {
-        console.error('Error searching hotels:', error);
-        res.status(500).json({ error: 'Internal Server Error' });
+      } 
       }
 };
   
